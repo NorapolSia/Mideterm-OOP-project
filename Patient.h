@@ -1,12 +1,11 @@
-//#ifndef PATIENT_H
-//#define PATIENT_H
 #include <iostream>
 using namespace std;
 
 class Patient {
 
     private:
-
+        Patient* next;
+        Patient* prev;
         string name;
         int age;
         string disease;
@@ -18,7 +17,8 @@ class Patient {
     public:
         
         Patient() { //default constructor
-        
+            next = NULL;
+            prev = NULL;
             name = "N/A";
             age = 0;
             disease = "N/A";
@@ -34,6 +34,7 @@ class Patient {
             else if (severity == other.severity && age < other.age) return true;
             else return false;
         }
+
         Patient& operator=(const Patient& other){
             this->name = other.name;
             this->age = other.age;
@@ -54,6 +55,8 @@ class Patient {
         string getDoctorName() const { return doctorName; }
         string getMedicine() const { return medicine; }
         string getBlood() const { return bloodType; }
+        Patient* getNext() const { return next; }
+        Patient* getPrev() const { return prev; }
 
         //setter functions
         void setName(const string& n) { name = n; }
@@ -63,4 +66,6 @@ class Patient {
         void setDoctorName(const string& doc) { doctorName = doc; }
         void setMedicine(const string& med) { medicine = med; }
         void setBlood(const string& blood) { bloodType = blood; }
+        void setNext( Patient* nextPtr) { next = nextPtr; }
+        void setPrev( Patient* prevPtr) { prev = prevPtr; }
 };
